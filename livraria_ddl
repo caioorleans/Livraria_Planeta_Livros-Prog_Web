@@ -5,7 +5,7 @@
 -- Dumped from database version 13.3
 -- Dumped by pg_dump version 13.3
 
--- Started on 2021-07-23 15:46:47
+-- Started on 2021-07-24 16:38:50
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -55,7 +55,7 @@ CREATE SEQUENCE public.administrador_id_seq
 ALTER TABLE public.administrador_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3069 (class 0 OID 0)
+-- TOC entry 3058 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: administrador_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -123,7 +123,7 @@ CREATE SEQUENCE public.cliente_id_seq
 ALTER TABLE public.cliente_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3070 (class 0 OID 0)
+-- TOC entry 3059 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: cliente_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -191,7 +191,7 @@ CREATE SEQUENCE public.foto_id_seq
 ALTER TABLE public.foto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3071 (class 0 OID 0)
+-- TOC entry 3060 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: foto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -239,114 +239,16 @@ ALTER TABLE ONLY public.foto ALTER COLUMN id SET DEFAULT nextval('public.foto_id
 
 
 --
--- TOC entry 3054 (class 0 OID 24579)
--- Dependencies: 201
--- Data for Name: administrador; Type: TABLE DATA; Schema: public; Owner: postgres
+-- TOC entry 2891 (class 2606 OID 24687)
+-- Name: administrador administrador_login_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-COPY public.administrador (id, nome, login, senha, email) FROM stdin;
-\.
-
-
---
--- TOC entry 3057 (class 0 OID 24599)
--- Dependencies: 204
--- Data for Name: categoria; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.categoria (id, descricao) FROM stdin;
-\.
+ALTER TABLE ONLY public.administrador
+    ADD CONSTRAINT administrador_login_key UNIQUE (login);
 
 
 --
--- TOC entry 3063 (class 0 OID 24636)
--- Dependencies: 210
--- Data for Name: categoria_produto; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.categoria_produto (id_categoria, id_produto) FROM stdin;
-\.
-
-
---
--- TOC entry 3056 (class 0 OID 24590)
--- Dependencies: 203
--- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.cliente (id, nome, endereco, login, senha, email) FROM stdin;
-\.
-
-
---
--- TOC entry 3061 (class 0 OID 24626)
--- Dependencies: 208
--- Data for Name: compra; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.compra (id, id_cliente, data_hota) FROM stdin;
-\.
-
-
---
--- TOC entry 3062 (class 0 OID 24631)
--- Dependencies: 209
--- Data for Name: compra_produto; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.compra_produto (id_produto, id_compra, quantiade) FROM stdin;
-\.
-
-
---
--- TOC entry 3060 (class 0 OID 24617)
--- Dependencies: 207
--- Data for Name: foto; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.foto (id, id_produto, descricao, eh_foto) FROM stdin;
-\.
-
-
---
--- TOC entry 3058 (class 0 OID 24607)
--- Dependencies: 205
--- Data for Name: produto; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.produto (id, descricao, preco, quantidade) FROM stdin;
-\.
-
-
---
--- TOC entry 3072 (class 0 OID 0)
--- Dependencies: 200
--- Name: administrador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.administrador_id_seq', 1, false);
-
-
---
--- TOC entry 3073 (class 0 OID 0)
--- Dependencies: 202
--- Name: cliente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.cliente_id_seq', 1, false);
-
-
---
--- TOC entry 3074 (class 0 OID 0)
--- Dependencies: 206
--- Name: foto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.foto_id_seq', 1, false);
-
-
---
--- TOC entry 2891 (class 2606 OID 24587)
+-- TOC entry 2893 (class 2606 OID 24587)
 -- Name: administrador administrador_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -373,7 +275,16 @@ ALTER TABLE ONLY public.categoria_produto
 
 
 --
--- TOC entry 2895 (class 2606 OID 24598)
+-- TOC entry 2895 (class 2606 OID 24689)
+-- Name: cliente cliente_login_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cliente
+    ADD CONSTRAINT cliente_login_key UNIQUE (login);
+
+
+--
+-- TOC entry 2897 (class 2606 OID 24598)
 -- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -415,24 +326,6 @@ ALTER TABLE ONLY public.compra
 
 ALTER TABLE ONLY public.produto
     ADD CONSTRAINT produto_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 2893 (class 2606 OID 24644)
--- Name: administrador uk_id_adm; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.administrador
-    ADD CONSTRAINT uk_id_adm UNIQUE (login);
-
-
---
--- TOC entry 2897 (class 2606 OID 24642)
--- Name: cliente uk_login_cliente; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.cliente
-    ADD CONSTRAINT uk_login_cliente UNIQUE (login);
 
 
 --
@@ -546,7 +439,7 @@ ALTER TABLE ONLY public.categoria_produto
     ADD CONSTRAINT fk_id_produto_categoria FOREIGN KEY (id_produto) REFERENCES public.produto(id) NOT VALID;
 
 
--- Completed on 2021-07-23 15:46:48
+-- Completed on 2021-07-24 16:38:50
 
 --
 -- PostgreSQL database dump complete
