@@ -16,6 +16,10 @@
         <servlet-name>VerPerfilServlet</servlet-name>
         <servlet-class>entidade.cliente.controle.VerPerfilServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginAdmServlet</servlet-name>
+        <servlet-class>entidade.administrador.controle.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>VerPerfilServlet</servlet-name>
         <url-pattern>/VerPerfilServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginAdmServlet</servlet-name>
+        <url-pattern>/LoginAdmServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
