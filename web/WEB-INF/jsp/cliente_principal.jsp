@@ -14,7 +14,8 @@
     </head>
     <body>
         <% Cliente cliente = (Cliente)session.getAttribute("usuario"); %>
-        <h1>Olá,<% cliente.getNome(); %> </h1>
-        <a href = "Logout">Sair</a>
+        <h1>Olá,<%=cliente.getNome() %> </h1>
+        <a href = "VerPerfilServlet">Ver perfil</a>
+        <a href = "LogoutServlet">Sair</a>
     </body>
 </html>
