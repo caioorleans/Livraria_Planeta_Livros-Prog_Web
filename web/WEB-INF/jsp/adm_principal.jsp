@@ -15,7 +15,7 @@
     <body>
         <% Administrador adm = (Administrador)session.getAttribute("usuario"); %>
         <h1>Olá,<%=adm.getNome() %> </h1>
-        <a href = "VerPerfilServlet">Ver perfil</a>
+        <a href = "VerPerfilAdmServlet">Ver perfil</a>
         <a href = "LogoutServlet">Sair</a>
     </body>
 </html>
