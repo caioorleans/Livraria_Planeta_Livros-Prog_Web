@@ -27,10 +27,10 @@
                 <li><a href = "cadastrar_cliente.jsp">Cadastre-se</a></li>
                 <li><form action="LoginServlet" method="post">
                         <input type="text" name="login" placeholder = "Entre com seu login"/>
+                        <input type="password" name="senha" placeholder = "Entre com sua senha"/>
                         <% if (request.getAttribute("mensagem") != null){%>
                             <div style = "display:block; font-size: 10px; "><%= request.getAttribute("mensagem") %></div>
                         <%} %>
-                        <input type="password" name="senha" placeholder = "Entre com sua senha"/>
                         <input type="submit" value="entrar"/>
                     </form>
                 </li>
