@@ -52,7 +52,6 @@ function validarEmail(elemento) {
                 (dominio.search(".") != -1) &&
                 (dominio.indexOf(".") >= 1) &&
                 (dominio.lastIndexOf(".") < dominio.length - 1)) {
-            alert("Cheguei aqui");
             return true;
         } else {
             alert("E-mail invalido");

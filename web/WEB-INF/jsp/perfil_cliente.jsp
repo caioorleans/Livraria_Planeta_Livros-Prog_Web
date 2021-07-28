@@ -12,7 +12,7 @@
         <title>Livraria Orleanz - Perfil</title>
     </head>
     <body>
-        <h1>Perfil do Usuário</h1>
+        <h1>Perfil do Cliente</h1>
         <jsp:useBean id="usuario" class="entidade.cliente.modelo.Cliente" scope="session"/>
         <table>
             <tr>
