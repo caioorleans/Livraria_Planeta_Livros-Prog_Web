@@ -25,7 +25,7 @@
                 <li><a class="active" href="#">Início</a></li>
                 <li><a href="#">Sobre</a></li>
                 <li><a href = "cadastrar_cliente.jsp">Cadastre-se</a></li>
-                <li><form action="LoginServlet" method="post">
+                <li><form action="LoginAdmServlet" method="post">
                         <input type="text" name="login" placeholder = "Entre com seu login"/>
                         <input type="password" name="senha" placeholder = "Entre com sua senha"/>
                         <% if (request.getAttribute("mensagem") != null){%>

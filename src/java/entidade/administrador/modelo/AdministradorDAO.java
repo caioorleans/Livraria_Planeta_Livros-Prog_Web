@@ -35,7 +35,7 @@ public class AdministradorDAO {
         } catch (SQLException ex) {
             return false;
         }
-        return true;
+        return sucesso;
     }
     
     public Administrador obter(String login){
@@ -43,7 +43,7 @@ public class AdministradorDAO {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, login, senha, email FROM administrador WHERE login = ? AND senha = ?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, login, senha, email FROM administrador WHERE login = ?;");
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){

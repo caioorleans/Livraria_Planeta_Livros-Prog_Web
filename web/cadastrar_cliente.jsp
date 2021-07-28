@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Livraria Orleanz - Cadastro</title>
         <link rel="stylesheet" href="css/style2.css">
+        <script type="text/javascript" src="scripts/register.js"></script>
     </head>
     <body>
     <div class="login-page">
@@ -18,18 +19,18 @@
             <a id="btnback" href="index.jsp"><img src="imagens/back.png" /></a>
 
             <h1>Cadastro</h1>
-            <form action = "CadastrarClienteServlet" method="post">
-                <input type="text" name="nome" placeholder = "Nome"/>
+            <form action="CadastrarClienteServlet" method="post" onSubmit="return validationRegister(event);">
+                <input type="text" id="nome" name="nome" placeholder="Nome"/>
                 <br/>
-                <input type="text" name="endereco" placeholder = "Endereço"/>
+                <input type="text" id="endereco" name="endereco" placeholder="Endereço"/>
                 <br/>
-                <input type="text" name="email" placeholder = "E-mail"/>
+                <input type="text" id="email" name="email" placeholder="E-mail"/>
                 <br/>
-                <input type="text" name="login" placeholder = "Login"/>
+                <input type="text" id="login" name="login" placeholder="Login"/>
                 <br/>
-                <input type="password" name="senha" placeholder = "Senha"/>
+                <input type="password" id="senha" name="senha" placeholder="Senha"/>
                 <br/>
-                <input type="submit" value="cadastrar">
+                <input type="submit" value="cadastrar"/>
             </form>
             <% if (request.getAttribute("mensagem") != null){%>
                 <div><%= request.getAttribute("mensagem") %></div>
@@ -44,5 +45,6 @@
             }, "slow");
         });
     </script>
+    
 </body>
 </html>
