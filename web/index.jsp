@@ -4,6 +4,8 @@
     Author     : caioo
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="entidade.produto.modelo.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
@@ -28,8 +30,8 @@
                 <li><form action="Login" method="post">
                         <input type="text" name="login" placeholder = "Entre com seu login"/>
                         <input type="password" name="senha" placeholder = "Entre com sua senha"/>
-                        <% if (request.getAttribute("mensagem") != null){%>
-                            <div style = "display:block; font-size: 10px; "><%= request.getAttribute("mensagem") %></div>
+                        <% if (request.getAttribute("mensagem") != null) {%>
+                        <div style = "display:block; font-size: 10px; "><%= request.getAttribute("mensagem")%></div>
                         <%} %>
                         <input type="submit" value="entrar"/>
                     </form>
@@ -95,6 +97,23 @@
             </div>
             <div class="Cat2">
                 <h1>Novidades Para Você</h1>
+                <hr/>
+                <%
+                    List<Produto> produtosDisponiveis = (List<Produto>) request.getAttribute("produtosDisponiveis");
+                    if (produtosDisponiveis.isEmpty()) {
+                %>
+                <div>Não existem produtos disponíveis</div>
+                <%} else {
+                    for (int i = 0; i < produtosDisponiveis.size(); i++) {
+                        Produto p = produtosDisponiveis.get(i);
+                %>
+                <div>
+                    <h4><%=p.getDescricao()%></h4>
+                    <h5><%=p.getPreco()%></h5>
+                </div>
+                <%}
+                  }
+                %>
                 <div class="categorias">
                     <ul>
                         <li><img src="imagens/teste2.jpg" alt=""></li>
@@ -117,7 +136,7 @@
             let currentSlide = 1;
 
             // Javascript for image slider manual navigation
-            var manualNav = function(manual) {
+            var manualNav = function (manual) {
                 slides.forEach((slide) => {
                     slide.classList.remove('active');
 
@@ -138,12 +157,12 @@
             });
 
             // Javascript for image slider autoplay navigation
-            var repeat = function(activeClass) {
+            var repeat = function (activeClass) {
                 let active = document.getElementsByClassName('active');
                 let i = 1;
 
                 var repeater = () => {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         [...active].forEach((activeSlide) => {
                             activeSlide.classList.remove('active');
                         });

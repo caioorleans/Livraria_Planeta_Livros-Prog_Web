@@ -35,7 +35,7 @@ public class InicioServlet extends HttpServlet {
             throws ServletException, IOException {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         List<Produto> produtos = produtoDAO.recuperarProdutosEmEstoque();
-        request.setAttribute("produtosDisponíveis", produtos);
+        request.setAttribute("produtosDisponiveis", produtos);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);
     }
