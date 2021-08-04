@@ -5,7 +5,7 @@
 -- Dumped from database version 13.3
 -- Dumped by pg_dump version 13.3
 
--- Started on 2021-07-24 16:38:50
+-- Started on 2021-07-28 17:00:12
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -439,7 +439,7 @@ ALTER TABLE ONLY public.categoria_produto
     ADD CONSTRAINT fk_id_produto_categoria FOREIGN KEY (id_produto) REFERENCES public.produto(id) NOT VALID;
 
 
--- Completed on 2021-07-24 16:38:50
+-- Completed on 2021-07-28 17:00:13
 
 --
 -- PostgreSQL database dump complete

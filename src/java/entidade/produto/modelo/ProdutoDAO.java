@@ -94,4 +94,30 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+    
+    public ArrayList<Produto> recuperarProdutosEmEstoque(){
+        ArrayList<Produto> produtos = new ArrayList<Produto>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade FROM produto WHERE quantidade > 0");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Produto p = new Produto();
+                p.setId(resultSet.getInt("id"));
+                p.setDescricao(resultSet.getString("descricao"));
+                p.setPreco(resultSet.getDouble("preco"));
+                p.setQuantidade(resultSet.getInt("quantidade"));
+                produtos.add(p);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+        return produtos;
+    }
 }
