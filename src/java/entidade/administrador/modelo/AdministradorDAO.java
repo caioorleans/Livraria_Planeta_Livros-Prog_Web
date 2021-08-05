@@ -93,20 +93,20 @@ public class AdministradorDAO {
     }
     
     public boolean deletar(int id){
-        
-        boolean sucesso = false;
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM administrador WHERE id = ?;");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            sucesso = true;
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
         } catch (ClassNotFoundException ex) {
             return false;
         } catch (SQLException ex) {
-            return false;
+            return true;
         }
-        return sucesso;
+        return true;
     }
 }
