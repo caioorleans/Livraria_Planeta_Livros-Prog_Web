@@ -16,11 +16,11 @@
     <body>
     <div class="login-page">
         <div class="form">
-            <a id="btnback" href="index.jsp"><img src="imagens/back.png" /></a>
+            <a id="btnback" href="Inicio"><img src="imagens/back.png" /></a>
 
             <h1>Cadastro</h1>
             <form action="CadastrarClienteServlet" method="post" onSubmit="return validationRegister(event);">
-                <input type="text" id="nome" name="nome" placeholder="Nome"/>
+                <input type="text" id="nome" name="nome" placeholder="Nome" value = "Caio"/>
                 <br/>
                 <input type="text" id="endereco" name="endereco" placeholder="Endereço"/>
                 <br/>

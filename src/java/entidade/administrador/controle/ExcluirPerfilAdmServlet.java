@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entidade.administrador.controle;
 
 import entidade.administrador.modelo.Administrador;
@@ -15,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author caioo
  */
-public class LoginServlet extends HttpServlet {
+public class ExcluirPerfilAdmServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -26,26 +31,22 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* entrada */
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
         
-        /* processamento */
+        HttpSession session = request.getSession();
+        Administrador a = (Administrador)session.getAttribute("usuario");
         AdministradorDAO administradorDAO = new AdministradorDAO();
-        boolean loginValido = administradorDAO.efetuarLogin(login, senha);
         
-        /* saída */
-        if(loginValido){
-            HttpSession session = request.getSession(true);
-            Administrador adm = administradorDAO.obter(login);
-            session.setAttribute("usuario", adm);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/adm_principal.jsp");
+        if(administradorDAO.deletar(a.getId())){
+            session.invalidate();
+            request.setAttribute("mensagem","Seu perfil foi excluído.");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("Inicio");
             requestDispatcher.forward(request, response);
-        }else{
-            request.setAttribute("mensagem", "Login ou senha incorreta");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/perfil_adm.jsp");
+        }
+        else{
+            request.setAttribute("mensagem","Não foi possivel excluir perfil.");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/adm_principal.jsp");
             requestDispatcher.forward(request, response);
         }
     }

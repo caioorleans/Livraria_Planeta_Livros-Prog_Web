@@ -54,7 +54,7 @@ public class LoginBothServlet extends HttpServlet {
                 requestDispatcher.forward(request, response);
             } else {
                 request.setAttribute("mensagem", "Login ou senha incorreta");
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("Inicio");
                 requestDispatcher.forward(request, response);
             }
         }
