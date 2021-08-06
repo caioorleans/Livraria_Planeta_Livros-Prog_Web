@@ -40,6 +40,10 @@
         <servlet-name>ExcluirPerfilAdmServlet</servlet-name>
         <servlet-class>entidade.administrador.controle.ExcluirPerfilAdmServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AlterarPerfilClienteServlet</servlet-name>
+        <servlet-class>entidade.cliente.controle.AlterarPerfilClienteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>ExcluirPerfilAdmServlet</servlet-name>
         <url-pattern>/ExcluirPerfilAdm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarPerfilClienteServlet</servlet-name>
+        <url-pattern>/AlterarPerfilCliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

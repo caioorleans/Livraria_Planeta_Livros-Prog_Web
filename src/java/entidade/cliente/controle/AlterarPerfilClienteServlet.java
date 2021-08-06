@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidade.administrador.controle;
+package entidade.cliente.controle;
 
-import entidade.administrador.modelo.Administrador;
-import entidade.administrador.modelo.AdministradorDAO;
+import entidade.cliente.modelo.Cliente;
+import entidade.cliente.modelo.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author caioo
  */
-public class AlterarPerfilAdmServlet extends HttpServlet {
+public class AlterarPerfilClienteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,34 +33,34 @@ public class AlterarPerfilAdmServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Administrador a = new Administrador();
+        Cliente c = new Cliente();
         HttpSession session = request.getSession(true);
         
-        a.setNome(request.getParameter("nome"));
-        a.setEmail(request.getParameter("email"));
-        a.setLogin(request.getParameter("login"));
-        a.setSenha(request.getParameter("senha"));
-        a.setId(((Administrador)session.getAttribute("usuario")).getId());
+        c.setNome(request.getParameter("nome"));
+        c.setEndereco(request.getParameter("endereco"));
+        c.setEmail(request.getParameter("email"));
+        c.setLogin(request.getParameter("login"));
+        c.setSenha(request.getParameter("senha"));
+        c.setId(((Cliente)session.getAttribute("usuario")).getId());
         
         /* processamento */
         
-        AdministradorDAO administradorDAO = new AdministradorDAO();
+        ClienteDAO clienteDAO = new ClienteDAO();
         try{
-            if(administradorDAO.atualizar(a)){
+            if(clienteDAO.atualizar(c)){
                 request.setAttribute("mensagem","Cadastro atualizado com sucesso!");
-                session.setAttribute("usuario", a);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/adm_principal.jsp");
+                session.setAttribute("usuario", c);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/cliente_principal.jsp");
                 requestDispatcher.forward(request, response);
             }
             else{
-                request.setAttribute("mensagem","Não foi possível atualizar os dados do administrador.");
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/perfil_adm.jsp");
+                request.setAttribute("mensagem","Não foi possível atualizar os dados do cliente.");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/perfil_cliente.jsp");
                 requestDispatcher.forward(request, response);
             }
         }catch(Exception ex){
-            request.setAttribute("mensagem","Não foi possível atualizar os dados do administrador.");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/perfil_adm.jsp");
+            request.setAttribute("mensagem","Não foi possível atualizar os dados do cliente.");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/perfil_cliente.jsp");
             requestDispatcher.forward(request, response);
         }
     }
