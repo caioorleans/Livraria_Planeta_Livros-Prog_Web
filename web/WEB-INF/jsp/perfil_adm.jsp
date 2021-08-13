@@ -36,8 +36,9 @@
             </table>
             <input type="submit" value="cadastrar"/>
         </form>
-        <% if (request.getAttribute("mensagem") != null){%>
-                <div><%= request.getAttribute("mensagem") %></div>
-        <%} %>
+        <% if (request.getAttribute("mensagem") != null) {%>
+        <div><%= request.getAttribute("mensagem")%></div>
+        <%}%>
+        <a href = "ExcluirPerfilAdm">Excluir perfil</a>
     </body>
 </html>
