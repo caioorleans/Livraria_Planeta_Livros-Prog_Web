@@ -98,11 +98,9 @@ public class ClienteDAO {
             preparedStatement.setString(4, c.getSenha());
             preparedStatement.setString(5, c.getEmail());
             preparedStatement.setInt(6, c.getId());
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            if(preparedStatement.executeUpdate() != 0){
                 sucesso = true;
             }
-            resultSet.close();
             preparedStatement.close();
             connection.close();
         } catch (ClassNotFoundException ex) {

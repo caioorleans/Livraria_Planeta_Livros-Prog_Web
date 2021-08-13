@@ -50,11 +50,9 @@ public class AdministradorDAO {
             preparedStatement.setString(3, a.getSenha());
             preparedStatement.setString(4, a.getEmail());
             preparedStatement.setInt(5, a.getId());
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            if(preparedStatement.executeUpdate() != 0){
                 sucesso = true;
             }
-            resultSet.close();
             preparedStatement.close();
             connection.close();
         } catch (ClassNotFoundException ex) {

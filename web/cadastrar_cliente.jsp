@@ -20,7 +20,7 @@
 
             <h1>Cadastro</h1>
             <form action="CadastrarClienteServlet" method="post" onSubmit="return validationRegister(event);">
-                <input type="text" id="nome" name="nome" placeholder="Nome" value = "Caio"/>
+                <input type="text" id="nome" name="nome" placeholder="Nome"/>
                 <br/>
                 <input type="text" id="endereco" name="endereco" placeholder="Endereço"/>
                 <br/>
