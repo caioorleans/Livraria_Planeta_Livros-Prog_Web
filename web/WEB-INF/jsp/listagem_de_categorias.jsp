@@ -15,6 +15,9 @@
     </head>
     <body>
         <h1>Categorias</h1>
+        <% if (request.getAttribute("mensagem") != null) {%>
+        <div><%= request.getAttribute("mensagem")%></div>
+        <%} %>
         <hr/>
         <%
             ArrayList<Categoria> produtosDisponiveis = (ArrayList<Categoria>) request.getAttribute("categorias");
@@ -28,6 +31,7 @@
         <div>
             <h4><%=c.getDescricao()%></h4>
             <a href ="EditarCategoria?categoriaId=<%= c.getId()%>">Editar</a>
+            <a href ="ExcluirCategoria?categoriaId=<%= c.getId()%>">Excluir</a>
         </div>
         <%}
             }
