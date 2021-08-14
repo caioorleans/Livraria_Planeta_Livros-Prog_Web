@@ -48,6 +48,18 @@
         <servlet-name>ExcluirPerfilClienteServlet</servlet-name>
         <servlet-class>entidade.cliente.controle.ExcluirPerfilClienteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarCategoriasServlet</servlet-name>
+        <servlet-class>entidade.categoria.controle.ListarCategoriasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarCategoriaServlet</servlet-name>
+        <servlet-class>entidade.categoria.controle.EditarCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RealizarUpdateCategoriaServlet</servlet-name>
+        <servlet-class>entidade.categoria.controle.RealizarUpdateCategoriaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -95,6 +107,18 @@
     <servlet-mapping>
         <servlet-name>ExcluirPerfilClienteServlet</servlet-name>
         <url-pattern>/ExcluirPerfilCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarCategoriasServlet</servlet-name>
+        <url-pattern>/ListarCategorias</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarCategoriaServlet</servlet-name>
+        <url-pattern>/EditarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RealizarUpdateCategoriaServlet</servlet-name>
+        <url-pattern>/RealizarUpdateCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

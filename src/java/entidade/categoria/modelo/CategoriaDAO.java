@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class CategoriaDAO {
     
-    public ArrayList<Categoria> recuperarTodas(int id){
+    public ArrayList<Categoria> recuperarTodas(){
         ArrayList<Categoria> categorias = new ArrayList<Categoria>();
         try {
             Class.forName("org.postgresql.Driver");
@@ -37,5 +37,68 @@ public class CategoriaDAO {
             return null;
         }
         return categorias;
+    }
+    
+    public Categoria recuperar(int id){
+        Categoria c = null;
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao FROM categoria WHERE id=?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                c = new Categoria();
+                c.setId(resultSet.getInt("id"));
+                c.setDescricao(resultSet.getString("descricao"));
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+        return c;
+    }
+    
+    public boolean atualizar(Categoria c){
+        boolean sucesso = false;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE categoria SET descricao=? WHERE id=?;");
+            preparedStatement.setString(1, c.getDescricao());
+            preparedStatement.setInt(2, c.getId());
+            if(preparedStatement.executeUpdate() != 0){
+                sucesso = true;
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return false;
+        }
+        return sucesso;
+    }
+    
+    public boolean deletar(int id){
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM categoria WHERE id = ?;");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return true;
+        }
+        return true;
     }
 }
