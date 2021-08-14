@@ -15,9 +15,9 @@
     <body>
         <% Administrador adm = (Administrador)session.getAttribute("usuario"); %>
         <h1>Olá,<%=adm.getNome() %> </h1>
-        <a href="">Visualizar Clientes</a>
-        <a href="">Visualizar Categorias</a>
-        <a href="">Visualizar Produtos</a>
+        <a >Visualizar Clientes</a>
+        <a >Visualizar Categorias</a>
+        <a >Visualizar Produtos</a>
         <a href = "VerPerfilAdmServlet">Alterar seus dados</a>
         <a href = "LogoutServlet">Sair</a>
     </body>
