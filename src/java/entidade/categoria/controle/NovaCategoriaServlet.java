@@ -5,8 +5,6 @@
  */
 package entidade.categoria.controle;
 
-import entidade.categoria.modelo.Categoria;
-import entidade.categoria.modelo.CategoriaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author caioo
  */
-public class EditarCategoriaServlet extends HttpServlet {
+public class NovaCategoriaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,15 +31,8 @@ public class EditarCategoriaServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int categoriaId = Integer.parseInt(request.getParameter("categoriaId"));
         
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
-        Categoria c = categoriaDAO.recuperar(categoriaId);
-        
-        if(c != null){
-            request.setAttribute("categoria",c);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/editar_categoria.jsp");
-            requestDispatcher.forward(request, response);
-        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/adicionar_nova_categoria.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

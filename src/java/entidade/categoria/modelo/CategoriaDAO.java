@@ -15,6 +15,27 @@ import java.util.logging.Logger;
  */
 public class CategoriaDAO {
     
+    public boolean inserir(String descricao){
+        boolean sucesso = false;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO categoria(descricao) values(?)");
+            preparedStatement.setString(1, descricao);
+            if(preparedStatement.executeUpdate() == 1){
+                sucesso = true;
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sucesso;
+    }
+    
     public ArrayList<Categoria> recuperarTodas(){
         ArrayList<Categoria> categorias = new ArrayList<Categoria>();
         try {

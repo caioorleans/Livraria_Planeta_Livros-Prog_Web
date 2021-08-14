@@ -64,6 +64,14 @@
         <servlet-name>ExcluirCategoriaServlet</servlet-name>
         <servlet-class>entidade.categoria.controle.ExcluirCategoriaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NovaCategoriaServlet</servlet-name>
+        <servlet-class>entidade.categoria.controle.NovaCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdicionarCategoriaServlet</servlet-name>
+        <servlet-class>entidade.categoria.controle.AdicionarCategoriaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -127,6 +135,14 @@
     <servlet-mapping>
         <servlet-name>ExcluirCategoriaServlet</servlet-name>
         <url-pattern>/ExcluirCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NovaCategoriaServlet</servlet-name>
+        <url-pattern>/NovaCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdicionarCategoriaServlet</servlet-name>
+        <url-pattern>/AdicionarCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

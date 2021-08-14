@@ -14,7 +14,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Categorias</h1>
+        <h1>Menu de Categorias</h1>
+        <a href="NovaCategoria">Adicionar nova categoria</a>
+        <h2>Categorias disponíveis</h2>
         <% if (request.getAttribute("mensagem") != null) {%>
         <div><%= request.getAttribute("mensagem")%></div>
         <%} %>

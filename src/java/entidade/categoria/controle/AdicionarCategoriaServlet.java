@@ -5,7 +5,6 @@
  */
 package entidade.categoria.controle;
 
-import entidade.categoria.modelo.Categoria;
 import entidade.categoria.modelo.CategoriaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author caioo
  */
-public class EditarCategoriaServlet extends HttpServlet {
+public class AdicionarCategoriaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,17 +29,22 @@ public class EditarCategoriaServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int categoriaId = Integer.parseInt(request.getParameter("categoriaId"));
+        
+        String descricao = request.getParameter("descricao");
         
         CategoriaDAO categoriaDAO = new CategoriaDAO();
-        Categoria c = categoriaDAO.recuperar(categoriaId);
         
-        if(c != null){
-            request.setAttribute("categoria",c);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/editar_categoria.jsp");
+        if(categoriaDAO.inserir(descricao)){
+            request.setAttribute("mensagem","Categoria criada com sucesso!");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListarCategorias");
+            requestDispatcher.forward(request, response);
+        }
+        else{
+            request.setAttribute("mensagem","Não foi possível criar a categoria!");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("NovaCategoria");
             requestDispatcher.forward(request, response);
         }
     }
