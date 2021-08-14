@@ -37,10 +37,11 @@
                     <td><input type="text" id="senha" name="senha" placeholder="Senha" value = <jsp:getProperty name="usuario" property="senha"/>></td>
                 </tr>
             </table>
-            <input type="submit" value="cadastrar"/>
+            <input type="submit" value="atualizar"/>
         </form>
         <% if (request.getAttribute("mensagem") != null){%>
                 <div><%= request.getAttribute("mensagem") %></div>
         <%} %>
+        <a href = "ExcluirPerfilCliente">Excluir perfil</a>
     </body>
 </html>
