@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class FotoDAO {
     
-    public Foto fotoCapa(int id){
+    public Foto recuperarFotoCapa(int id){
         Foto capa = null;
         try {
             Class.forName("org.postgresql.Driver");
@@ -41,7 +41,7 @@ public class FotoDAO {
         return capa;
     }
     
-    public ArrayList<Foto> demaisFotos(int id){
+    public ArrayList<Foto> recuperarDemaisFotos(int id){
         ArrayList<Foto> fotos = new ArrayList<Foto>();
         try {
             Class.forName("org.postgresql.Driver");
@@ -66,5 +66,10 @@ public class FotoDAO {
             return null;
         }
         return fotos;
+    }
+    
+    public boolean inserirFoto(){
+        boolean sucesso = false;
+        return sucesso;
     }
 }

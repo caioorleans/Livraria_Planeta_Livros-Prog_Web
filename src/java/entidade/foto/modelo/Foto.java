@@ -7,6 +7,7 @@ package entidade.foto.modelo;
 public class Foto {
     
     private Integer id;
+    private Integer idProduto;
     private String endereco;
     private String descricao;
 
@@ -16,6 +17,14 @@ public class Foto {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public Integer getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
     }
 
     public String getEndereco() {
