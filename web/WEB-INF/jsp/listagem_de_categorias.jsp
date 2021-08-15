@@ -38,5 +38,6 @@
         <%}
             }
         %>
+        <a href="PaginaPrincipalAdm">Voltar</a>
     </body>
 </html>

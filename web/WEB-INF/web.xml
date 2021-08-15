@@ -72,6 +72,10 @@
         <servlet-name>AdicionarCategoriaServlet</servlet-name>
         <servlet-class>entidade.categoria.controle.AdicionarCategoriaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaginaPrincipalAdmServlet</servlet-name>
+        <servlet-class>entidade.administrador.controle.PaginaPrincipalAdmServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>AdicionarCategoriaServlet</servlet-name>
         <url-pattern>/AdicionarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaginaPrincipalAdmServlet</servlet-name>
+        <url-pattern>/PaginaPrincipalAdm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
