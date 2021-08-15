@@ -40,6 +40,7 @@
             Produto p = produtosDisponiveis.get(i);
     %>
     <div>
+        <div><img src="MostrarProdutoFoto?id=<%= p.getId() %>" width="200" height="200" /></div>
         <h4><%=p.getDescricao()%></h4>
         <h5><%=p.getPreco()%></h5>
     </div>

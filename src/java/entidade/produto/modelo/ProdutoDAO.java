@@ -47,7 +47,7 @@ public class ProdutoDAO {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz", "postgres", "05121316");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade FROM produto WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade, imagem FROM produto WHERE id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -56,6 +56,7 @@ public class ProdutoDAO {
                 p.setDescricao(resultSet.getString("descricao"));
                 p.setPreco(resultSet.getDouble("preco"));
                 p.setQuantidade(resultSet.getInt("quantidade"));
+                p.setFoto(resultSet.getString("imagem"));
             }
             resultSet.close();
             preparedStatement.close();
@@ -100,7 +101,7 @@ public class ProdutoDAO {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz", "postgres", "05121316");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade FROM produto WHERE quantidade > 0");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade, imagem FROM produto WHERE quantidade > 0");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Produto p = new Produto();
@@ -108,6 +109,7 @@ public class ProdutoDAO {
                 p.setDescricao(resultSet.getString("descricao"));
                 p.setPreco(resultSet.getDouble("preco"));
                 p.setQuantidade(resultSet.getInt("quantidade"));
+                p.setFoto(resultSet.getString("imagem"));
                 produtos.add(p);
             }
             resultSet.close();
@@ -126,7 +128,7 @@ public class ProdutoDAO {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz", "postgres", "05121316");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade FROM produto");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade, imagem FROM produto");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Produto p = new Produto();
@@ -134,6 +136,7 @@ public class ProdutoDAO {
                 p.setDescricao(resultSet.getString("descricao"));
                 p.setPreco(resultSet.getDouble("preco"));
                 p.setQuantidade(resultSet.getInt("quantidade"));
+                p.setFoto(resultSet.getString("imagem"));
                 produtos.add(p);
             }
             resultSet.close();

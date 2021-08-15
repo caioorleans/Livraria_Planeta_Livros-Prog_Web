@@ -31,6 +31,7 @@
                 Produto p = produtosDisponiveis.get(i);
         %>
         <div>
+            <div><img src="MostrarProdutoFoto?id=<%= p.getId() %>" width="200" height="200" /></div>
             <h4><%=p.getDescricao()%></h4>
             <h5>R$ <%=p.getPreco()%></h5>
             <h5>Unidades em estoque: <%=p.getQuantidade()%></h5>

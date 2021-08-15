@@ -10,6 +10,15 @@ public class Produto {
     private String descricao;
     private Double preco;
     private Integer quantidade;
+    private String foto;
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public Integer getId() {
         return id;
@@ -42,4 +51,5 @@ public class Produto {
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
+    
 }

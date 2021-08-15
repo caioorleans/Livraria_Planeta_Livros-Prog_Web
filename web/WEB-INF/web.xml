@@ -88,6 +88,10 @@
         <servlet-name>NovoProdutoServlet</servlet-name>
         <servlet-class>entidade.produto.controle.NovoProdutoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MostrarProdutoFotoServlet</servlet-name>
+        <servlet-class>entidade.produto.controle.MostrarProdutoFotoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>NovoProdutoServlet</servlet-name>
         <url-pattern>/NovoProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProdutoFotoServlet</servlet-name>
+        <url-pattern>/MostrarProdutoFoto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
