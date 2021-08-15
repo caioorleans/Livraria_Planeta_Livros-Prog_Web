@@ -147,19 +147,22 @@ public class ProdutoDAO {
         return produtos;
     }
     
-    public boolean inserir(String descricao, double preco, int quantidade){
+    public boolean inserir(Produto p){
         boolean sucesso = false;
         try {
             Class.forName("org.postgresql.Driver");
-            Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO produto(descricao, preco, quantidade) values(?,?,?)");
-            preparedStatement.setString(1, descricao);
-            preparedStatement.setDouble(2, preco);
-            preparedStatement.setInt(3, quantidade);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO produto(descricao, preco, quantidade) VALUES(?,?,?);");
+            preparedStatement.setString(1, p.getDescricao());
+            preparedStatement.setDouble(2, p.getPreco());
+            preparedStatement.setInt(3, p.getQuantidade());
             if(preparedStatement.executeUpdate() == 1){
                 sucesso = true;
             }
+            /*ResultSet resultSet = preparedStatement.getResultSet();
+            int id = resultSet.getInt(1);
+            System.out.println(id);
+            resultSet.close();*/
             preparedStatement.close();
             connection.close();
         } catch (ClassNotFoundException ex) {

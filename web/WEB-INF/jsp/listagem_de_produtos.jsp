@@ -1,10 +1,10 @@
 <%-- 
-    Document   : listagem_de_categorias
-    Created on : 14/08/2021, 15:12:27
+    Document   : listagem_de_produtos
+    Created on : 15/08/2021, 14:57:05
     Author     : caioo
 --%>
 
-<%@page import="entidade.categoria.modelo.Categoria"%>
+<%@page import="entidade.produto.modelo.Produto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,26 +14,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Menu de Categorias</h1>
-        <a href="NovaCategoria">Adicionar nova categoria</a>
-        <h2>Categorias disponíveis</h2>
+        <h1>Menu de Produtos</h1>
+        <a href="NovoProduto">Adicionar novo Produto</a>
+        <h2>Produtos disponíveis</h2>
         <% if (request.getAttribute("mensagem") != null) {%>
         <div><%= request.getAttribute("mensagem")%></div>
         <%} %>
         <hr/>
         <%
-            ArrayList<Categoria> produtosDisponiveis = (ArrayList<Categoria>) request.getAttribute("categorias");
+            ArrayList<Produto> produtosDisponiveis = (ArrayList<Produto>) request.getAttribute("produtos");
             if (produtosDisponiveis.isEmpty()) {
         %>
         <div>Não existem produtos disponíveis</div>
         <%} else {
             for (int i = 0; i < produtosDisponiveis.size(); i++) {
-                Categoria c = produtosDisponiveis.get(i);
+                Produto p = produtosDisponiveis.get(i);
         %>
         <div>
-            <h4><%=c.getDescricao()%></h4>
-            <a href ="EditarCategoria?categoriaId=<%= c.getId()%>" method="post">Editar</a>
-            <a href ="ExcluirCategoria?categoriaId=<%= c.getId()%>" method="post">Excluir</a>
+            <h4><%=p.getDescricao()%></h4>
+            <h5>R$ <%=p.getPreco()%></h5>
+            <h5>Unidades em estoque: <%=p.getQuantidade()%></h5>
+            <a href ="EditarCategoria?produtoId=<%= p.getId()%>">Editar</a>
+            <a href ="ExcluirCategoria?produtoId=<%= p.getId()%>" method="post" >Excluir</a>
         </div>
         <%}
             }

@@ -21,7 +21,7 @@ public class CategoriaDAO {
             Class.forName("org.postgresql.Driver");
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO categoria(descricao) values(?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO categoria(descricao) VALUES(?)");
             preparedStatement.setString(1, descricao);
             if(preparedStatement.executeUpdate() == 1){
                 sucesso = true;

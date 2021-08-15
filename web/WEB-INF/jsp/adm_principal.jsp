@@ -17,7 +17,7 @@
         <h1>Olá,<%=adm.getNome() %> </h1>
         <a >Visualizar Clientes</a>
         <a href = "ListarCategorias">Visualizar Categorias</a>
-        <a >Visualizar Produtos</a>
+        <a href="ListarProdutos">Visualizar Produtos</a>
         <a href = "VerPerfilAdmServlet">Alterar seus dados</a>
         <a href = "LogoutServlet">Sair</a>
     </body>

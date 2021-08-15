@@ -76,6 +76,18 @@
         <servlet-name>PaginaPrincipalAdmServlet</servlet-name>
         <servlet-class>entidade.administrador.controle.PaginaPrincipalAdmServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarProdutosServlet</servlet-name>
+        <servlet-class>entidade.produto.controle.ListarProdutosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdicionarProdutoServlet</servlet-name>
+        <servlet-class>entidade.produto.controle.AdicionarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NovoProdutoServlet</servlet-name>
+        <servlet-class>entidade.produto.controle.NovoProdutoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -151,6 +163,18 @@
     <servlet-mapping>
         <servlet-name>PaginaPrincipalAdmServlet</servlet-name>
         <url-pattern>/PaginaPrincipalAdm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarProdutosServlet</servlet-name>
+        <url-pattern>/ListarProdutos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdicionarProdutoServlet</servlet-name>
+        <url-pattern>/AdicionarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NovoProdutoServlet</servlet-name>
+        <url-pattern>/NovoProduto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
