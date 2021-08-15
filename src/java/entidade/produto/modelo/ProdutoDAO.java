@@ -120,4 +120,76 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+    
+    public ArrayList<Produto> recuperarTodos(){
+        ArrayList<Produto> produtos = new ArrayList<Produto>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade FROM produto");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Produto p = new Produto();
+                p.setId(resultSet.getInt("id"));
+                p.setDescricao(resultSet.getString("descricao"));
+                p.setPreco(resultSet.getDouble("preco"));
+                p.setQuantidade(resultSet.getInt("quantidade"));
+                produtos.add(p);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+        return produtos;
+    }
+    
+    public boolean inserir(String descricao, double preco, int quantidade){
+        boolean sucesso = false;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO produto(descricao, preco, quantidade) values(?,?,?)");
+            preparedStatement.setString(1, descricao);
+            preparedStatement.setDouble(2, preco);
+            preparedStatement.setInt(3, quantidade);
+            if(preparedStatement.executeUpdate() == 1){
+                sucesso = true;
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return false;
+        }
+        return sucesso;
+    }
+    
+    public boolean atualizar(Produto p){
+        boolean sucesso = false;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE produto SET descricao=?, preco=?, quantidade=? WHERE id=?");
+            preparedStatement.setString(1, p.getDescricao());
+            preparedStatement.setDouble(2, p.getPreco());
+            preparedStatement.setInt(3, p.getQuantidade());
+            preparedStatement.setInt(4, p.getId());
+            if(preparedStatement.executeUpdate() == 1){
+                sucesso = true;
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return false;
+        }
+        return sucesso;
+    }
 }

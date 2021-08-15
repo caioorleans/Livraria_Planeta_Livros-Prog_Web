@@ -29,9 +29,9 @@ public class CategoriaDAO {
             preparedStatement.close();
             connection.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (SQLException ex) {
-            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return sucesso;
     }
