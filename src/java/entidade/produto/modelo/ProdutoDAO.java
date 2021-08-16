@@ -233,4 +233,22 @@ public class ProdutoDAO {
             throw new Exception(ex.getMessage());
         }
     }
+    
+    public boolean deletar(int id){
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM produto WHERE id = ?;");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return true;
+        }
+        return true;
+    }
 }

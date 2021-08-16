@@ -96,6 +96,14 @@
         <servlet-name>UploadProdutoFotoServlet</servlet-name>
         <servlet-class>entidade.produto.controle.UploadProdutoFotoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExcluirProdutoServlet</servlet-name>
+        <servlet-class>entidade.produto.controle.ExcluirProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarProdutoFotoServlet</servlet-name>
+        <servlet-class>entidade.produto.controle.AlterarProdutoFotoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -191,6 +199,14 @@
     <servlet-mapping>
         <servlet-name>UploadProdutoFotoServlet</servlet-name>
         <url-pattern>/UploadProdutoFoto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirProdutoServlet</servlet-name>
+        <url-pattern>/ExcluirProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarProdutoFotoServlet</servlet-name>
+        <url-pattern>/AlterarProdutoFoto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
