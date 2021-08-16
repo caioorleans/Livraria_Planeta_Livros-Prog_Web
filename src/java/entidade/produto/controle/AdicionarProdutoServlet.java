@@ -42,8 +42,9 @@ public class AdicionarProdutoServlet extends HttpServlet {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         
         if(produtoDAO.inserir(p)){
-            request.setAttribute("mensagem","Produto registrado com sucesso!");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListarProdutos");
+            p.setId(produtoDAO.recuperarUltimoId());
+            request.setAttribute("produto",p);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/atualizar_foto_produto.jsp");
             requestDispatcher.forward(request, response);
         }
         else{

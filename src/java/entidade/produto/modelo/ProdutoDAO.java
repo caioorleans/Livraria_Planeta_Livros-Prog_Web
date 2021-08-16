@@ -215,4 +215,22 @@ public class ProdutoDAO {
         }
         return sucesso;
     }
+    
+    public void atualizarFoto(int id, String caminhoFoto) throws Exception {
+        boolean sucesso = false;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz", "postgres", "05121316");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE produto SET imagem = ? WHERE id = ?");
+            preparedStatement.setString(1, caminhoFoto);
+            preparedStatement.setInt(2, id);
+            sucesso = (preparedStatement.executeUpdate() == 1);
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            throw new Exception(ex.getMessage());
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
 }
