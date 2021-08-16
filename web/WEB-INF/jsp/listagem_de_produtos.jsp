@@ -35,7 +35,7 @@
             <h4><%=p.getDescricao()%></h4>
             <h5>R$ <%=p.getPreco()%></h5>
             <h5>Unidades em estoque: <%=p.getQuantidade()%></h5>
-            <a href ="EditarCategoria?produtoId=<%= p.getId()%>">Editar</a>
+            <a href ="EditarProduto?produtoId=<%= p.getId()%>">Editar</a>
             <a href ="AlterarProdutoFoto?produtoId=<%= p.getId()%>">Alterar foto</a>
             <a href ="ExcluirProduto?produtoId=<%= p.getId()%>" method="post" >Excluir</a>
         </div>

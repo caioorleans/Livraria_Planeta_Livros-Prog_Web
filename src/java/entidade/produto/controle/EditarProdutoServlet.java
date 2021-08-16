@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidade.administrador.controle;
+package entidade.produto.controle;
 
+import entidade.produto.modelo.Produto;
+import entidade.produto.modelo.ProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author caioo
  */
-public class PaginaPrincipalAdmServlet extends HttpServlet {
+public class EditarProdutoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +33,20 @@ public class PaginaPrincipalAdmServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher requestDispatcher = null;
-        if(request.getSession(false)!=null){
-            requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/adm_principal.jsp");
+        
+        int idProduto = Integer.parseInt(request.getParameter("produtoId"));
+        
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        Produto p = produtoDAO.recuperar(idProduto);
+        
+        if(p!=null){
+            request.setAttribute("produto", p);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/atualizar_dados_produto.jsp");
+            requestDispatcher.forward(request, response);
+        }else{
+            request.setAttribute("mensagem", "Produto não encontrado");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/listagem_de_produtos.jsp");
+            requestDispatcher.forward(request, response);
         }
-        else{
-            request.setAttribute("mensagem", "Sessão expirou");
-            requestDispatcher = request.getRequestDispatcher("Inicio");
-        }
-        requestDispatcher.forward(request, response);
     }
 }

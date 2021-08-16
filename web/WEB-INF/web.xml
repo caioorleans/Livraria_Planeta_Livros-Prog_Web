@@ -104,6 +104,14 @@
         <servlet-name>AlterarProdutoFotoServlet</servlet-name>
         <servlet-class>entidade.produto.controle.AlterarProdutoFotoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditarProdutoServlet</servlet-name>
+        <servlet-class>entidade.produto.controle.EditarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtualizarProdutoServlet</servlet-name>
+        <servlet-class>entidade.produto.controle.AtualizarProdutoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -207,6 +215,14 @@
     <servlet-mapping>
         <servlet-name>AlterarProdutoFotoServlet</servlet-name>
         <url-pattern>/AlterarProdutoFoto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarProdutoServlet</servlet-name>
+        <url-pattern>/EditarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtualizarProdutoServlet</servlet-name>
+        <url-pattern>/AtualizarProduto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

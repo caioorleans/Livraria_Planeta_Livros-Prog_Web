@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidade.administrador.controle;
+package entidade.produto.controle;
 
+import entidade.produto.modelo.Produto;
+import entidade.produto.modelo.ProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author caioo
  */
-public class PaginaPrincipalAdmServlet extends HttpServlet {
+public class AtualizarProdutoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,16 +30,25 @@ public class PaginaPrincipalAdmServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher requestDispatcher = null;
-        if(request.getSession(false)!=null){
-            requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/adm_principal.jsp");
+        
+        Produto p = new Produto();
+        p.setId(Integer.parseInt(request.getParameter("id")));
+        p.setDescricao(request.getParameter("descricao"));
+        p.setPreco(Double.parseDouble(request.getParameter("preco")));
+        p.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+        
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListarProdutos");
+        
+        if(produtoDAO.atualizar(p)){
+            request.setAttribute("mensagem", "Dados de produto atualizados com sucesso");   
         }
         else{
-            request.setAttribute("mensagem", "Sessão expirou");
-            requestDispatcher = request.getRequestDispatcher("Inicio");
+            request.setAttribute("mensagem", "Não foi possível atualizar os dados do produto");
         }
         requestDispatcher.forward(request, response);
     }
