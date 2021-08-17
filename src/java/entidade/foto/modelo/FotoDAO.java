@@ -1,5 +1,6 @@
 package entidade.foto.modelo;
 
+import CredenciaisSGBD.Credenciais;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ public class FotoDAO {
         Foto capa = null;
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, endereco FROM foto WHERE id_produto = ? AND eh_capa = ?");
             preparedStatement.setInt(1, id);
             preparedStatement.setBoolean(2, true);
@@ -45,7 +46,7 @@ public class FotoDAO {
         ArrayList<Foto> fotos = new ArrayList<Foto>();
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, endereco FROM foto WHERE id_produto = ? AND eh_capa = ?");
             preparedStatement.setInt(1, id);
             preparedStatement.setBoolean(2, false);

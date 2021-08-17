@@ -1,5 +1,6 @@
 package entidade.administrador.modelo;
 
+import CredenciaisSGBD.Credenciais;
 import static java.lang.Class.forName;
 import static java.lang.System.console;
 import java.sql.Connection;
@@ -20,7 +21,7 @@ public class AdministradorDAO {
         boolean sucesso = false;
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, login, senha, email FROM administrador WHERE login = ? AND senha = ?;");
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, senha);
@@ -43,7 +44,7 @@ public class AdministradorDAO {
         boolean sucesso = false;
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE administrador SET nome=?, login=?, senha=?, email=? WHERE id=?;");
             preparedStatement.setString(1, a.getNome());
             preparedStatement.setString(2, a.getLogin());
@@ -67,7 +68,7 @@ public class AdministradorDAO {
         Administrador adm = null;
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, login, senha, email FROM administrador WHERE login = ?;");
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -93,7 +94,7 @@ public class AdministradorDAO {
     public boolean deletar(int id){
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM administrador WHERE id = ?;");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();

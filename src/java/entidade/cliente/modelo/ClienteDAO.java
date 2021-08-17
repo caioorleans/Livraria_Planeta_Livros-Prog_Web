@@ -1,5 +1,6 @@
 package entidade.cliente.modelo;
 
+import CredenciaisSGBD.Credenciais;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ public class ClienteDAO {
         Cliente c = null;
         try{
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, endereco, login, senha, email FROM cliente WHERE login = ?;");
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -46,7 +47,7 @@ public class ClienteDAO {
         boolean sucesso = false;
         try{
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO cliente(nome, endereco, login, senha, email) VALUES (?, ?, ?, ?, ?);");
             preparedStatement.setString(1, c.getNome());
             preparedStatement.setString(2, c.getEndereco());
@@ -67,7 +68,7 @@ public class ClienteDAO {
         boolean sucesso = false;
         try{
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, endereco, login, senha, email FROM cliente WHERE login = ? AND senha = ?;");
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, senha);
@@ -90,7 +91,7 @@ public class ClienteDAO {
         boolean sucesso = false;
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE cliente SET nome=?, endereco=?, login=?, senha=?, email=? WHERE id=?;");
             preparedStatement.setString(1, c.getNome());
             preparedStatement.setString(2, c.getEndereco());
@@ -114,7 +115,7 @@ public class ClienteDAO {
     public boolean deletar(int id){
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livraria_Orleanz","postgres","05121316");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM cliente WHERE id = ?;");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
