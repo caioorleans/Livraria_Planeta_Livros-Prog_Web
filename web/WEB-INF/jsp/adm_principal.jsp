@@ -10,11 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Livraria Orleanz - Página Administrador</title>
+        <title>Livraria Planeta Livros - Página do Administrador</title>
     </head>
     <body>
-        <% Administrador adm = (Administrador)session.getAttribute("usuario"); %>
-        <h1>Olá,<%=adm.getNome() %> </h1>
+        
+        <% Administrador adm = (Administrador) session.getAttribute("usuario");%>
+        <h1>Olá,<%=adm.getNome()%> </h1>
         <a >Visualizar Clientes</a>
         <a href = "ListarCategorias">Visualizar Categorias</a>
         <a href="ListarProdutos">Visualizar Produtos</a>
