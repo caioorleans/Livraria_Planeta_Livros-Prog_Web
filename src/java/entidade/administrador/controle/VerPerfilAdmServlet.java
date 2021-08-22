@@ -5,13 +5,15 @@
  */
 package entidade.administrador.controle;
 
+import entidade.administrador.modelo.Administrador;
+import entidade.administrador.modelo.AdministradorDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,6 +32,11 @@ public class VerPerfilAdmServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        AdministradorDAO administradorDAO = new AdministradorDAO();
+        Administrador admin = (Administrador) session.getAttribute("usuario");
+        Administrador administrador = administradorDAO.obter(admin.getLogin());
+        request.setAttribute("usuario", administrador);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/perfil_adm.jsp");
         requestDispatcher.forward(request, response);
     }

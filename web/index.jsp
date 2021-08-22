@@ -32,7 +32,7 @@
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <div class="float-start"><a class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-                                                href="homepage.html"><img src="imgs/logop.png" style="width: 50%;"></a>
+                                                href="Inicio"><img src="imgs/logop.png" style="width: 50%;"></a>
                     </div>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="search">
@@ -127,33 +127,34 @@
             if (produtosDisponiveis.isEmpty()) {
         %>
         <div>Não existem produtos disponíveis</div>
-        <div class="card-group">
-            <%} else {
-                for (int i = 0; i < produtosDisponiveis.size(); i++) {
-                    Produto p = produtosDisponiveis.get(i);
-            %>
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="MostrarProdutoFoto?id=<%= p.getId()%>" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><%=p.getDescricao()%></h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">R$ <%=p.getPreco()%></small></p>
+        <%} else {%>
+        <table>
+            <tr>
+                <%for (int i = 0; i < produtosDisponiveis.size(); i++) {
+                        Produto p = produtosDisponiveis.get(i);
+                %>
+                <td>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="MostrarProdutoFoto?id=<%= p.getId()%>" class="img-fluid rounded-start" alt="..." >
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%=p.getDescricao()%></h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                        additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-muted">R$ <%=p.getPreco()%></small></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                <!--<div><img src="MostrarProdutoFoto?id=<%= p.getId()%>" width="200" height="200" /></div>
-                <h4><%=p.getDescricao()%></h4>
-                <h5><%=p.getPreco()%></h5>-->
-            <%}
-                }
-            %>
-        </div>
+                </td>
+                <%}%>
+            </tr>
+        </table>
+        <%}
+        %>
     </main>
 
 
