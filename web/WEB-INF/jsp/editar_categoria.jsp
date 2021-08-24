@@ -18,7 +18,7 @@
             <input type="hidden" name="id" value=<%=c.getId()%>>
             <tr>
                 <td>Descrição:</td>
-                <td><input type="text" id="descricao" name="descricao" value =<%=c.getDescricao()%> ></td>
+                <td><input type="text" id="descricao" name="descricao" value ="<%=c.getDescricao()%>" ></td>
             </tr>
             <input type="submit">
         </form>

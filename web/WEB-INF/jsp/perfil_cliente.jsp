@@ -18,23 +18,23 @@
             <table>
                 <tr>
                     <td>Nome:</td>
-                    <td><input type="text" id="nome" name="nome" placeholder="Nome" value = <jsp:getProperty name="usuario" property="nome"/>></td>
+                    <td><input type="text" id="nome" name="nome" placeholder="Nome" value = "<jsp:getProperty name="usuario" property="nome"/>"></td>
                 </tr>
                 <tr>
                     <td>Endereco:</td>
-                    <td><input type="text" id="endereco" name="endereco" placeholder="Endereço" value = <jsp:getProperty name="usuario" property="endereco"/>></td>
+                    <td><input type="text" id="endereco" name="endereco" placeholder="Endereço" value = "<jsp:getProperty name="usuario" property="endereco"/>"></td>
                 </tr>
                 <tr>
                     <td>E-mail:</td>
-                    <td><input type="text" id="email" name="email" placeholder="E-mail" value = <jsp:getProperty name="usuario" property="email"/>></td>
+                    <td><input type="text" id="email" name="email" placeholder="E-mail" value = "<jsp:getProperty name="usuario" property="email"/>"></td>
                 </tr>
                 <tr>
                     <td>Login:</td>
-                    <td><input type="text" id="login" name="login" placeholder="Login" value = <jsp:getProperty name="usuario" property="login"/>></td>
+                    <td><input type="text" id="login" name="login" placeholder="Login" value = "<jsp:getProperty name="usuario" property="login"/>"></td>
                 </tr>
                 <tr>    
                     <td>Senha:</td>
-                    <td><input type="text" id="senha" name="senha" placeholder="Senha" value = <jsp:getProperty name="usuario" property="senha"/>></td>
+                    <td><input type="text" id="senha" name="senha" placeholder="Senha" value = "<jsp:getProperty name="usuario" property="senha"/>"></td>
                 </tr>
             </table>
             <input type="submit" value="atualizar"/>

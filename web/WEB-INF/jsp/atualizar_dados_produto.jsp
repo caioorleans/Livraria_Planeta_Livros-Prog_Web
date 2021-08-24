@@ -18,11 +18,11 @@
             <input type="hidden" name="id" value=<%=p.getId()%>>
             <tr>
                 <td>Descrição:</td>
-                <td><input type="text" id="descricao" name="descricao" value =<%=p.getDescricao()%> ></td>
+                <td><input type="text" id="descricao" name="descricao" value ="<%=p.getDescricao()%>" ></td>
                 <td>Preço:</td>
-                <td><input type="text" id="preco" name="preco" value =<%=p.getPreco()%> ></td>
+                <td><input type="text" id="preco" name="preco" value ="<%=p.getPreco()%>" ></td>
                 <td>Quantidade:</td>
-                <td><input type="text" id="quantidade" name="quantidade" value =<%=p.getQuantidade()%> ></td>
+                <td><input type="text" id="quantidade" name="quantidade" value ="<%=p.getQuantidade()%>" ></td>
             </tr>
             <input type="submit">
         </form>

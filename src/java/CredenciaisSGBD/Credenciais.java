@@ -10,9 +10,9 @@ package CredenciaisSGBD;
  * @author caioo
  */
 public class Credenciais {
-    private static final String URL = "jdbc:postgresql://localhost:5432/";
+    private static final String URL = "jdbc:postgresql://localhost:5432/Livraria_Orleanz";
     private static final String USUARIO = "postgres";
-    private static final String SENHA = "";
+    private static final String SENHA = "05121316";
 
     public static String getURL() {
         return URL;
