@@ -123,4 +123,37 @@ public class CategoriaDAO {
         }
         return true;
     }
+    
+    public ArrayList<Categoria> recuperarPorNome(String descricao) {
+        ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+        if (descricao == null) {
+            return new ArrayList<Categoria>();
+        }
+        if (descricao.trim().length() == 0) {
+            descricao = "%";
+        } else {
+            descricao = "%" + descricao + "%";
+        }
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(), Credenciais.getUSUARIO(), Credenciais.getSENHA());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao FROM categoria WHERE descricao LIKE ?");
+            preparedStatement.setString(1, descricao);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Categoria c = new Categoria();
+                c.setId(resultSet.getInt("id"));
+                c.setDescricao(resultSet.getString("descricao"));
+                categorias.add(c);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+        return categorias;
+    }
 }

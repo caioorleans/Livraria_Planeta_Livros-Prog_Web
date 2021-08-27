@@ -1,5 +1,8 @@
 package entidade.produto.modelo;
 
+import entidade.categoria.modelo.Categoria;
+import java.util.List;
+
 /**
  *
  * @author caioo
@@ -11,6 +14,7 @@ public class Produto {
     private Double preco;
     private Integer quantidade;
     private String foto;
+    private List<Categoria> categorias;
 
     public String getFoto() {
         return foto;
@@ -52,4 +56,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
     
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
 }

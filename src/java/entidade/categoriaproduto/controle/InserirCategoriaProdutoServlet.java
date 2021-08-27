@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidade.categoria.controle;
+package entidade.categoriaproduto.controle;
 
-import entidade.categoria.modelo.CategoriaDAO;
 import entidade.categoriaproduto.modelo.CategoriaProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author caioo
  */
-public class ExcluirCategoriaServlet extends HttpServlet {
+public class InserirCategoriaProdutoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +33,17 @@ public class ExcluirCategoriaServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        int produtoId = Integer.parseInt(request.getParameter("produtoId"));
         int categoriaId = Integer.parseInt(request.getParameter("categoriaId"));
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
-        
-        CategoriaProdutoDAO cpDAO = new CategoriaProdutoDAO();
-        
+        CategoriaProdutoDAO produtoCategoriaDAO = new CategoriaProdutoDAO();
         try {
-            cpDAO.excluirPorCategoria(categoriaId);
+            produtoCategoriaDAO.inserir(produtoId, categoriaId);
+            request.setAttribute("mensagem", "Categoria vinculada ao produto");
         } catch (SQLException ex) {
-            Logger.getLogger(ExcluirCategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("mensagem", ex.getMessage());
         }
-        
-        if(categoriaDAO.deletar(categoriaId)){
-            request.setAttribute("mensagem","Categoria excluída!");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListarCategorias");
-            requestDispatcher.forward(request, response);
-        }
-        else{
-            request.setAttribute("mensagem","Não foi possível excluir a categoria!");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListarCategorias");
-            requestDispatcher.forward(request, response);
-        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("EditarProduto?produtoId=" + produtoId);
+        dispatcher.forward(request, response);
     }
+
 }

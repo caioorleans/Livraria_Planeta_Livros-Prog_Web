@@ -5,9 +5,13 @@
  */
 package entidade.produto.controle;
 
+import entidade.categoriaproduto.modelo.CategoriaProdutoDAO;
 import entidade.produto.modelo.ProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,10 +37,17 @@ public class ExcluirProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        int categoriaId = Integer.parseInt(request.getParameter("produtoId"));
+        int produtoId = Integer.parseInt(request.getParameter("produtoId"));
         ProdutoDAO produtoDAO = new ProdutoDAO();
+        CategoriaProdutoDAO cpDAO = new CategoriaProdutoDAO();
         
-        if(produtoDAO.deletar(categoriaId)){
+        try {
+            cpDAO.excluir(produtoId);
+        } catch (SQLException ex) {
+            Logger.getLogger(ExcluirProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(produtoDAO.deletar(produtoId)){
             request.setAttribute("mensagem","Produto excluído!");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListarProdutos");
             requestDispatcher.forward(request, response);

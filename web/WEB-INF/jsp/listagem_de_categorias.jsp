@@ -16,7 +16,11 @@
     <body>
         <h1>Menu de Categorias</h1>
         <a href="NovaCategoria">Adicionar nova categoria</a>
-        <h2>Categorias disponíveis</h2>
+        <form action="BuscarCategoriaAdm" method="post">
+            <div>Descrição:</div>
+            <div><input type="text" name="descricao" /></div>
+            <div><input type="submit" value="Buscar" /></div>
+        </form>
         <% if (request.getAttribute("mensagem") != null) {%>
         <div><%= request.getAttribute("mensagem")%></div>
         <%} %>
