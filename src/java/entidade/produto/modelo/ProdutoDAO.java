@@ -275,4 +275,25 @@ public class ProdutoDAO {
         }
         return true;
     }
+    
+    public boolean subtrairDoEstoque(Produto p, int quantidade) {
+        boolean sucesso = false;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(), Credenciais.getUSUARIO(), Credenciais.getSENHA());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE produto SET quantidade = quantidade - ? WHERE id=?");
+            preparedStatement.setInt(1, quantidade);
+            preparedStatement.setDouble(2, p.getId());
+            if (preparedStatement.executeUpdate() == 1) {
+                sucesso = true;
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return false;
+        }
+        return sucesso;
+    }
 }

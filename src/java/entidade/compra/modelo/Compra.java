@@ -1,6 +1,9 @@
 package entidade.compra.modelo;
 
+import entidade.produto.modelo.Produto;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,7 +12,16 @@ import java.sql.Date;
 public class Compra {
     
     private Integer id;
-    private Date dataHora;
+    private Timestamp dataHora;
+    private ArrayList<Produto> produtos;
+
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(ArrayList<Produto> produtos) {
+        this.produtos = produtos;
+    }
 
     public Integer getId() {
         return id;
@@ -19,11 +31,11 @@ public class Compra {
         this.id = id;
     }
 
-    public Date getDataHora() {
+    public Timestamp getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(Date dataHora) {
+    public void setDataHora(Timestamp dataHora) {
         this.dataHora = dataHora;
     }
 }

@@ -4,6 +4,7 @@
     Author     : caioo
 --%>
 
+<%@page import="entidade.carrinhocompra.modelo.CarrinhoCompraItem"%>
 <%@page import="java.util.List"%>
 <%@page import="entidade.produto.modelo.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -143,6 +144,10 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><%=p.getDescricao()%></h5>
                                     <p class="card-text"><small class="text-muted">R$ <%=p.getPreco()%></small></p>
+                                    <form>
+                                        <input type="number">
+                                    </form>
+                                    <a href="AdicionarProdutoCarrinhoCompra?produtoId=<%= p.getId()%>">Adicionar ao Carrinho de Compras</a>
                                 </div>
                             </div>
                         </div>
@@ -151,6 +156,31 @@
                 <%}%>
             </tr>
         </table>
+        <%}
+        %>
+        <h1>Carrinho de Compras</h1>
+        <%
+            List<CarrinhoCompraItem> carrinhoCompraItens = (List<CarrinhoCompraItem>) request.getAttribute("carrinhoCompraItens");
+            double total = 0;
+            if (carrinhoCompraItens == null || carrinhoCompraItens.isEmpty()) {
+        %>
+        <div>Não existem itens no seu carrinho de compras</div>
+        <%
+        } else {
+
+            for (int i = 0; i < carrinhoCompraItens.size(); i++) {
+                CarrinhoCompraItem cci = carrinhoCompraItens.get(i);
+                total += cci.getQuantidade() * cci.getProduto().getPreco();
+        %>
+        <div>
+            <h4><%= cci.getProduto().getDescricao()%></h4>
+            <h5>Preço: <%= cci.getProduto().getPreco()%></h5>
+            <h6>Quantidade: <%= cci.getQuantidade()%></h6>
+            <div><a href="RemoverProdutoCarrinhoCompra?produtoId=<%= cci.getProduto().getId()%>">Remover do Carrinho de Compras</a></div>
+        </div>
+            <%}%>
+            <div>Total: R$ <%= total%></div>
+            <a href="EfetivarCompra">Finalizar compra</a>
         <%}
         %>
     </main>
