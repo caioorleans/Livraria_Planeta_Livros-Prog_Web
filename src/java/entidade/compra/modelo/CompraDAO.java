@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  *
@@ -60,6 +61,31 @@ public class CompraDAO {
             return 0;
         }
         return id;
+    }
+    
+    public ArrayList<Compra> recuperarCompras(int idCliente) {
+        ArrayList<Compra> compras = new ArrayList<Compra>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(), Credenciais.getUSUARIO(), Credenciais.getSENHA());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, data_hora FROM compra WHERE id_cliente = ?;");
+            preparedStatement.setInt(1, idCliente);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Compra c = new Compra();
+                c.setId(resultSet.getInt("id"));
+                c.setDataHora(resultSet.getTimestamp("data_hora"));
+                compras.add(c);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+        return compras;
     }
     
 }

@@ -140,6 +140,10 @@
         <servlet-name>EfetivarCompraServlet</servlet-name>
         <servlet-class>entidade.compra.controle.EfetivarCompraServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerComprasClienteServlet</servlet-name>
+        <servlet-class>entidade.compra.controle.VerComprasClienteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -279,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>EfetivarCompraServlet</servlet-name>
         <url-pattern>/EfetivarCompra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerComprasClienteServlet</servlet-name>
+        <url-pattern>/VerComprasCliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

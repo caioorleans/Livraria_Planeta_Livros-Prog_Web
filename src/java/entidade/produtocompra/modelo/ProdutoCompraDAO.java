@@ -10,7 +10,9 @@ import entidade.produto.modelo.Produto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -37,5 +39,33 @@ public class ProdutoCompraDAO {
             return false;
         }
         return sucesso;
+    }
+    
+    public ArrayList<Produto> recuperarPorCompra(int idCompra){
+        ArrayList<Produto> produtos = new ArrayList<Produto>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(), Credenciais.getUSUARIO(), Credenciais.getSENHA());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT p.id, p.descricao, p.preco, p.imagem, cp.quantidade FROM produto AS p, compra_produto as cp WHERE cp.id_compra = ? AND cp.id_produto = p.id;");
+            preparedStatement.setInt(1, idCompra);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Produto p = new Produto();
+                p.setId(resultSet.getInt("id"));
+                p.setDescricao(resultSet.getString("descricao"));
+                p.setPreco(resultSet.getDouble("preco"));
+                p.setFoto(resultSet.getString("imagem"));
+                p.setQuantidade(resultSet.getInt("quantidade"));
+                produtos.add(p);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+        return produtos;
     }
 }

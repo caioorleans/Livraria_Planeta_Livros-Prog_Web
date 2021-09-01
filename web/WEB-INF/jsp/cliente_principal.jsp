@@ -43,7 +43,8 @@
                 </div>
                 <div class="col">
                     <h1>Olá,<%=cliente.getNome() %> </h1>
-                    <a href = "VerPerfilServlet" class=" btn btn-warning btn-lg" style="width: 400px; margin-top: 30px;">Ver perfil</a>
+                    <a href = "VerPerfilServlet" class=" btn btn-warning btn-lg" style="width: 400px; margin-top: 30px;">Editar perfil</a>
+                    <a href = "VerComprasCliente" class=" btn btn-warning btn-lg" style="width: 400px; margin-top: 30px;">Ver compras</a>
                     
                 </div>
                     <div class="col">

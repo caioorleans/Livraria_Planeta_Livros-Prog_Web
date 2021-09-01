@@ -42,8 +42,9 @@
                     </form>
 
                     <div class="d-grid gap-2 d-md-flex text-end justify-content-md-end float-end">
-                        <button type="button" class="btn btn-outline-light" style="color: blue;" onClick="window.location.href = 'cadastrar_cliente.jsp'"><img
-                                src="imgs/login1.png" style="width: 25%;"> Login</button>
+                        
+                        <button type="button" class="btn btn-outline-light" style="color: blue;" onClick="window.location.href = 'cadastrar_cliente.jsp'">
+                            <img src="imgs/login1.png" style="width: 25%;"> Login</button>
                         <button type="button" class="btn btn-outline-light"><img src="imgs/carrinho.png"
                                                                                  style="width: 45%;"></button>
                     </div>

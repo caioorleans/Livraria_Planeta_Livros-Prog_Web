@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -54,19 +55,35 @@ public class EfetivarCompraServlet extends HttpServlet {
 
         List<CarrinhoCompraItem> carrinhoCompraItens = CarrinhoCompra.obterCarrinhoCompra(cookie.getValue());
         HttpSession session = request.getSession(true);
-        Cliente c = (Cliente) session.getAttribute("usuario");
-        CompraDAO compraDAO = new CompraDAO();
-        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
-        if(compraDAO.inserir(c.getId(), dataDeHoje)){
-            ProdutoCompraDAO pcDAO = new ProdutoCompraDAO();
-            int idCompra = compraDAO.recuperarUltimoId();
-            for (int i = 0; i < carrinhoCompraItens.size(); i++) {
-                CarrinhoCompraItem cci = carrinhoCompraItens.get(i);
-                if(pcDAO.inserir(idCompra, cci.getProduto(),cci.getQuantidade())){
-                    ProdutoDAO produtoDAO = new ProdutoDAO();
-                    produtoDAO.subtrairDoEstoque(cci.getProduto(),cci.getQuantidade());
+        if (session == null || session.getAttribute("usuario") == null) {
+            request.setAttribute("mensagem", "Você não tem uma sessão válida de usuário");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("Inicio");
+            requestDispatcher.forward(request, response);
+        } else {
+            if (session.getAttribute("usuario") instanceof Cliente) {
+                Cliente c = (Cliente) session.getAttribute("usuario");
+                CompraDAO compraDAO = new CompraDAO();
+                Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
+                if (compraDAO.inserir(c.getId(), dataDeHoje)) {
+                    ProdutoCompraDAO pcDAO = new ProdutoCompraDAO();
+                    int idCompra = compraDAO.recuperarUltimoId();
+                    for (int i = 0; i < carrinhoCompraItens.size(); i++) {
+                        CarrinhoCompraItem cci = carrinhoCompraItens.get(i);
+                        if (pcDAO.inserir(idCompra, cci.getProduto(), cci.getQuantidade())) {
+                            ProdutoDAO produtoDAO = new ProdutoDAO();
+                            produtoDAO.subtrairDoEstoque(cci.getProduto(), cci.getQuantidade());
+                        }
+                    }
+                    request.setAttribute("mensagem", "Compra realizada com sucesso!");  
                 }
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("Inicio");
+                requestDispatcher.forward(request, response);
+            } else {
+                request.setAttribute("mensagem", "Você não tem permissão para acessar este recurso");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("Inicio");
+                requestDispatcher.forward(request, response);
             }
         }
+
     }
 }
