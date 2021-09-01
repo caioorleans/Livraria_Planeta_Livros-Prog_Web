@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Atualizar dados do produto</title>
     </head>
     <body>
         <form action="AtualizarProduto" method="POST">

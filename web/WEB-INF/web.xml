@@ -156,9 +156,17 @@
         <servlet-name>CancelarCompraServlet</servlet-name>
         <servlet-class>entidade.compra.controle.CancelarCompraServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioProdutosIndisponiveisServlet</servlet-name>
+        <servlet-class>relatorios.controle.RelatorioProdutosIndisponiveisServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IrRelatoriosServlet</servlet-name>
+        <servlet-class>relatorios.controle.IrRelatoriosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
+        <url-pattern>/LoginCliente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
@@ -311,6 +319,14 @@
     <servlet-mapping>
         <servlet-name>CancelarCompraServlet</servlet-name>
         <url-pattern>/CancelarCompra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioProdutosIndisponiveisServlet</servlet-name>
+        <url-pattern>/RelatorioProdutosIndisponiveis</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IrRelatoriosServlet</servlet-name>
+        <url-pattern>/IrRelatorios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

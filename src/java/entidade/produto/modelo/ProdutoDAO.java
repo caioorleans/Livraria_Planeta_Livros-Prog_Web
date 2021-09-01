@@ -146,6 +146,33 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+    
+    public ArrayList<Produto> recuperarProdutosEmFalta() {
+        ArrayList<Produto> produtos = new ArrayList<Produto>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(), Credenciais.getUSUARIO(), Credenciais.getSENHA());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao, preco, quantidade, imagem FROM produto WHERE quantidade < 1");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Produto p = new Produto();
+                p.setId(resultSet.getInt("id"));
+                p.setDescricao(resultSet.getString("descricao"));
+                p.setPreco(resultSet.getDouble("preco"));
+                p.setQuantidade(resultSet.getInt("quantidade"));
+                p.setFoto(resultSet.getString("imagem"));
+                produtos.add(p);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+        return produtos;
+    }
 
     public ArrayList<Produto> recuperarTodos() {
         ArrayList<Produto> produtos = new ArrayList<Produto>();

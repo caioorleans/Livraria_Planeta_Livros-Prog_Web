@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Editar Categoria</title>
     </head>
     <body>
         <form action="RealizarUpdateCategoria" method="POST">

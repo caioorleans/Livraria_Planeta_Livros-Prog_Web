@@ -11,12 +11,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Clientes</title>
     </head>
     <body>
-        <h1>Menu de Produtos</h1>
-        <a href="NovoProduto">Adicionar novo Produto</a>
-        <form action="BuscarProdutoAdm" method="post">
+        <h1>Menu de Clientes</h1>
+        <form action="" method="post">
             <div>Descrição:</div>
             <div><input type="text" name="descricao" /></div>
             <div><input type="submit" value="Buscar" /></div>
@@ -29,7 +28,7 @@
             ArrayList<Cliente> clientes = (ArrayList<Cliente>) request.getAttribute("clientes");
             if (clientes.isEmpty()) {
         %>
-        <div>Nenhum produto encontrado</div>
+        <div>Nenhum cliente encontrado</div>
         <%} else {%>
             <%for (int i = 0; i < clientes.size(); i++) {
                     Cliente c = clientes.get(i);

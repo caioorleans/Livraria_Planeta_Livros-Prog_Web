@@ -18,7 +18,7 @@
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-                    href="homepage.html"><img src="imgs/logop.png" style="width: 50%;"></a>
+                    href="Inicio"><img src="imgs/logop.png" style="width: 50%;"></a>
 
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="search">

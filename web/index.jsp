@@ -4,6 +4,7 @@
     Author     : caioo
 --%>
 
+<%@page import="entidade.cliente.modelo.Cliente"%>
 <%@page import="entidade.carrinhocompra.modelo.CarrinhoCompraItem"%>
 <%@page import="java.util.List"%>
 <%@page import="entidade.produto.modelo.Produto"%>
@@ -40,13 +41,21 @@
                         <input type="search" class="rounded form-control form-control-dark" placeholder="Search..."
                                aria-label="Search">
                     </form>
-
+                    
                     <div class="d-grid gap-2 d-md-flex text-end justify-content-md-end float-end">
-                        
+                        <% Cliente cliente = (Cliente)session.getAttribute("usuario"); 
+                        if(cliente == null){%>
                         <button type="button" class="btn btn-outline-light" style="color: blue;" onClick="window.location.href = 'cadastrar_cliente.jsp'">
                             <img src="imgs/login1.png" style="width: 25%;"> Login</button>
-                        <button type="button" class="btn btn-outline-light"><img src="imgs/carrinho.png"
-                                                                                 style="width: 45%;"></button>
+                        <%}else{%>
+                        <form method="post" action="Login">
+                            <input type="hidden" name="login" value="<%=cliente.getLogin()%>">
+                            <input type="hidden" name="senha" value="<%=cliente.getSenha()%>">
+                            <input type="submit" class="btn btn-outline-light" style="color: blue;" value="Ver Perfil">
+                        </form>
+                            
+                        <%}%>
+                        <button type="button" class="btn btn-outline-light"><img src="imgs/carrinho.png" style="width: 45%;"></button>
                     </div>
                 </div>
             </div>
@@ -55,72 +64,14 @@
         <!--<form action="Login" method="post">
             <input type="text" name="login" placeholder = "Entre com seu login"/>
             <input type="password" name="senha" placeholder = "Entre com sua senha"/>
-            <input type="submit" value="entrar"/>
+            <input type="submit" value="entrar"/>-->
         </form>
 
         <% if (request.getAttribute("mensagem") != null) {%>
         <div><%= request.getAttribute("mensagem")%></div>
         <%} %>
-        <a href = "cadastrar_cliente.jsp">Cadastre-se</a>
+        <!--<a href = "cadastrar_cliente.jsp">Cadastre-se</a>
         <hr/>-->
-
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                         aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#777" />
-                    </svg>
-
-                    <div class="container">
-                        <div class="carousel-caption text-start">
-                            <h1>LIVROS</h1>
-                            <p></p>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="imgs/banner.png" style="width: 50%;">
-
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>LIVROS</h1>
-                            <p></p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                         aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#777" />
-                    </svg>
-
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <h1>LIVROS.</h1>
-                            <p></p>
-                            <p><a class="btn btn-lg btn-primary" href="#"></a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
 
         <h1>Novidades Para Você</h1>
         <hr/>
@@ -145,9 +96,6 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><%=p.getDescricao()%></h5>
                                     <p class="card-text"><small class="text-muted">R$ <%=p.getPreco()%></small></p>
-                                    <form>
-                                        <input type="number">
-                                    </form>
                                     <a href="AdicionarProdutoCarrinhoCompra?produtoId=<%= p.getId()%>">Adicionar ao Carrinho de Compras</a>
                                 </div>
                             </div>
