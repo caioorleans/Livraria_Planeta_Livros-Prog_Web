@@ -88,4 +88,23 @@ public class CompraDAO {
         return compras;
     }
     
+    public boolean excluir(int idCompra){
+        boolean sucesso = false;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(),Credenciais.getUSUARIO(),Credenciais.getSENHA());
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM compra WHERE id = ?;");
+            preparedStatement.setInt(1, idCompra);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return false;
+        } catch (SQLException ex) {
+            return true;
+        }
+        return sucesso;
+    }
+    
 }

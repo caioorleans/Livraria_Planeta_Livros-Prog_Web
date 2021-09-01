@@ -37,7 +37,7 @@
             <h4>Nome: <%=c.getNome()%></h4>
             <h5>Identificador: <%=c.getId()%></h5>
             <h5>Endereço: <%=c.getEndereco()%></h5>
-            <a>Ver compras do cliente</a>
+            <a href="VerComprasClienteAdm?idCliente=<%=c.getId()%>">Ver compras do cliente</a>
             <hr>
             <%}
                 }

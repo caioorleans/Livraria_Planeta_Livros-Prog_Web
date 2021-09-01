@@ -74,6 +74,8 @@ public class EfetivarCompraServlet extends HttpServlet {
                             produtoDAO.subtrairDoEstoque(cci.getProduto(), cci.getQuantidade());
                         }
                     }
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
                     request.setAttribute("mensagem", "Compra realizada com sucesso!");  
                 }
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Inicio");

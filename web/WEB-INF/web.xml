@@ -148,6 +148,14 @@
         <servlet-name>ListarClientesServlet</servlet-name>
         <servlet-class>entidade.cliente.controle.ListarClientesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerComprasClienteAdmServlet</servlet-name>
+        <servlet-class>entidade.compra.controle.VerComprasClienteAdmServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelarCompraServlet</servlet-name>
+        <servlet-class>entidade.compra.controle.CancelarCompraServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -295,6 +303,14 @@
     <servlet-mapping>
         <servlet-name>ListarClientesServlet</servlet-name>
         <url-pattern>/ListarClientes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerComprasClienteAdmServlet</servlet-name>
+        <url-pattern>/VerComprasClienteAdm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelarCompraServlet</servlet-name>
+        <url-pattern>/CancelarCompra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
