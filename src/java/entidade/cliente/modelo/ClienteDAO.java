@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -128,5 +129,32 @@ public class ClienteDAO {
             return true;
         }
         return true;
+    }
+    
+    public ArrayList<Cliente> recuperarTodos(){
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(Credenciais.getURL(), Credenciais.getUSUARIO(), Credenciais.getSENHA());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, endereco, email, login, senha FROM cliente");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Cliente c = new Cliente();
+                c.setId(resultSet.getInt("id"));
+                c.setNome(resultSet.getString("nome"));
+                c.setEndereco(resultSet.getString("endereco"));
+                c.setEmail(resultSet.getString("login"));
+                c.setSenha(resultSet.getString("senha"));
+                clientes.add(c);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (ClassNotFoundException ex) {
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+        return clientes;
     }
 }

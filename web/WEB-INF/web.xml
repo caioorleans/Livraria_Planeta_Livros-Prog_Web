@@ -144,6 +144,10 @@
         <servlet-name>VerComprasClienteServlet</servlet-name>
         <servlet-class>entidade.compra.controle.VerComprasClienteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarClientesServlet</servlet-name>
+        <servlet-class>entidade.cliente.controle.ListarClientesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -287,6 +291,10 @@
     <servlet-mapping>
         <servlet-name>VerComprasClienteServlet</servlet-name>
         <url-pattern>/VerComprasCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarClientesServlet</servlet-name>
+        <url-pattern>/ListarClientes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

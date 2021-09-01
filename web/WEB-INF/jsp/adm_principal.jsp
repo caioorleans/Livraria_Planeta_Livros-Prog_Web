@@ -46,7 +46,7 @@
                 <div class="col">
                     <h1 style="text-align: start;">Olá,<%=adm.getNome()%> </h1>
             
-                    <a >Visualizar Clientes</a>
+                    <a href = "ListarClientes" class="btn btn-warning btn-lg" style="width: 400px; margin-top: 30px;">Visualizar Clientes</a>
                     <a href = "ListarCategorias" class="btn btn-warning btn-lg" style="width: 400px; margin-top: 30px;">Visualizar Categorias</a>
                     <a href="ListarProdutos" class="btn btn-warning btn-lg" style="width: 400px; margin-top: 30px;">Visualizar Produtos</a>
                     <a href = "VerPerfilAdmServlet" class="btn btn-warning btn-lg" style="width: 400px; margin-top: 30px;">Alterar seus dados</a>
